@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alex Morgan | Bio Links</title>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Google Sans', sans-serif;
+        }
+        
+        body {
+            background: transparent;
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+        
+        .container {
+            display: flex;
+            flex-direction: column;
+            max-width: 400px;
+            width: 100%;
+            gap: 20px;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .bio-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 0;
+            padding: 30px 25px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%; /* Changed to make it circular */
+            object-fit: cover;
+            border: 4px solid #6e8efb;
+            margin: 0 auto 20px;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #6e8efb;
+            font-weight: 500;
+        }
+        
+        h1 {
+            margin-bottom: 8px;
+            color: #2d3748;
+            font-weight: 100;
+            font-size: 1.5rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .title {
+            color: #6e8efb;
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .bio {
+            color: #718096;
+            margin-bottom: 25px;
+            line-height: 1.6;
+            font-weight: 300;
+            font-size: 0.9rem;
+        }
+        
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 25px;
+        }
+        
+        .link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            background: rgba(247, 250, 252, 0.7);
+            border-radius: 0;
+            text-decoration: none;
+            color: #4a5568;
+            font-weight: 300;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(226, 232, 240, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        .link:hover, .link:focus {
+            background: #6e8efb;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(110, 142, 251, 0.4);
+            outline: none;
+        }
+        
+        .ad-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        
+        .ad-slot {
+            background: transparent;
+            backdrop-filter: none;
+            border-radius: 0;
+            padding: 0;
+            box-shadow: none;
+            border: none;
+        }
+        
+        .ad-label {
+            font-size: 11px;
+            color: #a0aec0;
+            text-align: center;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+        
+        .ad-content {
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border-radius: 0;
+            color: #a0aec0;
+            font-size: 13px;
+            text-align: center;
+            padding: 10px;
+            font-weight: 300;
+            border: none;
+        }
+        
+        .ad-content.horizontal {
+            flex-direction: row;
+            gap: 10px;
+        }
+        
+        .ad-icon {
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 400;
+        }
+        
+        .ad-content.horizontal .ad-icon {
+            margin-bottom: 0;
+        }
+        
+        /* Focus styles for accessibility */
+        *:focus {
+            outline: 2px solid #6e8efb;
+            outline-offset: 2px;
+        }
+        
+        /* Skip link for accessibility */
+        .skip-link {
+            position: absolute;
+            top: -40px;
+            left: 6px;
+            background: #6e8efb;
+            color: white;
+            padding: 8px;
+            text-decoration: none;
+            z-index: 100;
+            border-radius: 0;
+        }
+        
+        .skip-link:focus {
+            top: 6px;
+        }
+        
+        /* High contrast mode support */
+        @media (prefers-contrast: high) {
+            .bio-card {
+                background: white;
+                border: 2px solid #333;
+            }
+            
+            .link {
+                border: 2px solid #333;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .link {
+                transition: none;
+            }
+            
+            .link:hover, .link:focus {
+                transform: none;
+            }
+        }
+        
+        /* Tablet Styles */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 700px;
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .bio-card {
+                order: 2;
+                flex: 1;
+                min-width: 400px;
+                max-width: 450px;
+            }
+            
+            .ad-container {
+                order: 1;
+                width: 150px;
+            }
+            
+            .ad-content {
+                height: 250px;
+            }
+            
+            .ad-content.horizontal {
+                height: 120px;
+            }
+        }
+        
+        /* Desktop Styles */
+        @media (min-width: 1024px) {
+            .container {
+                max-width: 1000px;
+                flex-direction: row;
+                flex-wrap: nowrap;
+            }
+            
+            .bio-card {
+                order: 2;
+                flex: 1;
+                max-width: 450px;
+                padding: 40px;
+            }
+            
+            .ad-container {
+                order: 1;
+                width: 160px;
+            }
+            
+            .ad-content {
+                height: 400px;
+            }
+            
+            .ad-content.horizontal {
+                height: 150px;
+            }
+            
+            .avatar {
+                width: 120px;
+                height: 120px;
+            }
+            
+            h1 {
+                font-size: 1.75rem;
+            }
+            
+            .title {
+                font-size: 1.1rem;
+            }
+            
+            .bio {
+                font-size: 1rem;
+            }
+            
+            .link {
+                padding: 15px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    
+    <div id="particles-js"></div>
+    
+    <div class="container">
+        <!-- Ad Slots -->
+        <div class="ad-container">
+            <div class="ad-slot">
+
+                </div>
+            </div>
+        </div>
+   
+        <!-- Main Bio Card -->
+        <div class="bio-card" id="main-content">
+            <div class="avatar" aria-label="Alex Morgan's initials">AM</div>
+            <h1>Lin Shen</h1>
+            <div class="title">PSYCHOLOGIST</div>
+            <p class="bio">I create beautiful, functional digital experiences. Passionate about user-centered design and clean code.</p>
+            
+            <div class="links">
+                <a href="#" class="link" aria-label="Visit Portfolio and Projects">
+                    <span>Portfolio & Projects</span>
+                </a>
+                <a href="#" class="link" aria-label="Read Design Blog">
+                    <span>Design Blog</span>
+                </a>
+                <a href="#" class="link" aria-label="Access Free Resources">
+                    <span>Free Resources</span>
+                </a>
+                <a href="#" class="link" aria-label="Browse Online Courses">
+                    <span>Online Courses</span>
+                </a>
+                <a href="#" class="link" aria-label="Book a Consultation">
+                    <span>Book a Consultation</span>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Ad Slots -->
+        <div class="ad-container">
+            <div class="ad-slot">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-content" id="ad-slot-1">
+                    <div class="ad-icon">AD SPACE</div>
+                    <div>Your Ad Here</div>
+                </div>
+            </div>
+            
+            <div class="ad-slot">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-content horizontal" id="ad-slot-2">
+                    <div class="ad-icon">AD</div>
+                    <div>Ad Space Available</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize Particles.js
+        particlesJS('particles-js', {
+            particles: {
+                number: {
+                    value: 80,
+                    density: {
+                        enable: true,
+                        value_area: 800
+                    }
+                },
+                color: {
+                    value: ["#6e8efb", "#a777e3", "#ff6b6b", "#4ecdc4", "#45b7d1", "#ffa5a5", "#96ceb4", "#feca57"]
+                },
+                shape: {
+                    type: "circle",
+                    stroke: {
+                        width: 0,
+                        color: "#000000"
+                    }
+                },
+                opacity: {
+                    value: 0.5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 1,
+                        opacity_min: 0.1,
+                        sync: false
+                    }
+                },
+                size: {
+                    value: 5,
+                    random: true,
+                    anim: {
+                        enable: true,
+                        speed: 2,
+                        size_min: 0.1,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: "#6e8efb",
+                    opacity: 0.2,
+                    width: 1
+                },
+                move: {
+                    enable: true,
+                    speed: 1,
+                    direction: "none",
+                    random: true,
+                    straight: false,
+                    out_mode: "out",
+                    bounce: false,
+                    attract: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 1200
+                    }
+                }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: {
+                    onhover: {
+                        enable: true,
+                        mode: "grab"
+                    },
+                    onclick: {
+                        enable: true,
+                        mode: "push"
+                    },
+                    resize: true
+                },
+                modes: {
+                    grab: {
+                        distance: 140,
+                        line_linked: {
+                            opacity: 0.5
+                        }
+                    },
+                    push: {
+                        particles_nb: 4
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Simple script to handle interactions
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.link');
+            
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // In a real implementation, this would navigate to the actual link
+                    console.log('Link clicked: ' + this.querySelector('span:last-child').textContent);
+                });
+            });
+            
+            // Add keyboard navigation support
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Tab') {
+                    document.body.classList.add('keyboard-nav');
+                }
+            });
+            
+            document.addEventListener('mousedown', function() {
+                document.body.classList.remove('keyboard-nav');
+            });
+        });
+    </script>
+</body>
+</html>
